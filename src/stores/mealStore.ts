@@ -26,6 +26,7 @@ interface MealAnalysis {
   recommendations: string[];
   mealType: string;
   imageUrl?: string;
+  analysisDate: string;
 }
 
 interface MealStore {

@@ -5,11 +5,11 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import authRoutes from './routes/auth';
-import mealRoutes from './routes/meals';
-import workoutRoutes from './routes/workouts';
-import progressRoutes from './routes/progress';
-import settingsRoutes from './routes/settings';
+import authRoutes from './routes/auth.js';
+import mealRoutes from './routes/meals.js';
+import workoutRoutes from './routes/workouts.js';
+import progressRoutes from './routes/progress.js';
+import settingsRoutes from './routes/settings.js';
 
 dotenv.config();
 

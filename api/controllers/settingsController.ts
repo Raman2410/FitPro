@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import User from '../models/User';
+import User from '../models/User.js';
 
 export const updateSettings = async (req: Request, res: Response): Promise<void> => {
   try {

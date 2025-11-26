@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import app from './app';
+import app from './app.js';
 
 const PORT = process.env.PORT || 3001;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ai-fitness';
@@ -17,7 +17,7 @@ const connectDB = async () => {
 const startServer = async () => {
   try {
     await connectDB();
-    
+
     app.listen(PORT, () => {
       console.log(`🚀 AI Fitness Server running on port ${PORT}`);
       console.log(`📊 Health check: http://localhost:${PORT}/api/health`);

@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import ProgressData from '../models/ProgressData';
-import { AuthRequest } from '../middleware/auth';
+import ProgressData from '../models/ProgressData.js';
+import { AuthRequest } from '../middleware/auth.js';
 import { body, validationResult } from 'express-validator';
 
 export const validateProgressData = [

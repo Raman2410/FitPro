@@ -1,6 +1,6 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { authenticate } from '../middleware/auth';
+import { authenticate } from '../middleware/auth.js';
 import {
   updateSettings,
   getSettings,
@@ -11,7 +11,7 @@ import {
   updateNotificationsSettings,
   updateThemeSettings,
   updateUnitsSettings
-} from '../controllers/settingsController';
+} from '../controllers/settingsController.js';
 
 const router = express.Router();
 

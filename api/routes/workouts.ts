@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { authenticate } from '../middleware/auth';
-import { generateWorkout, getWorkoutPlans, getWorkoutPlan, completeWorkout } from '../controllers/workoutController';
+import { authenticate } from '../middleware/auth.js';
+import { generateWorkout, getWorkoutPlans, getWorkoutPlan, completeWorkout } from '../controllers/workoutController.js';
 
 const router = express.Router();
 

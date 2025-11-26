@@ -1,6 +1,6 @@
 import express from 'express';
-import { authenticate } from '../middleware/auth';
-import { addProgressData, getProgressData, getProgressPredictions, validateProgressData } from '../controllers/progressController';
+import { authenticate } from '../middleware/auth.js';
+import { addProgressData, getProgressData, getProgressPredictions, validateProgressData } from '../controllers/progressController.js';
 
 const router = express.Router();
 

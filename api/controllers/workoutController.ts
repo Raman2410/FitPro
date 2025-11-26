@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { AuthRequest } from '../middleware/auth';
-import WorkoutPlan from '../models/WorkoutPlan';
-import User from '../models/User';
+import { AuthRequest } from '../middleware/auth.js';
+import WorkoutPlan from '../models/WorkoutPlan.js';
+import User from '../models/User.js';
 
 interface Exercise {
   name: string;

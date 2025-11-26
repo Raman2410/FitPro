@@ -1,7 +1,7 @@
 import express from 'express';
 import { body } from 'express-validator';
-import { authenticate, requirePremium } from '../middleware/auth';
-import { uploadMealImage, analyzeMeal, getMealHistory, getMealAnalysis } from '../controllers/mealController';
+import { authenticate, requirePremium } from '../middleware/auth.js';
+import { uploadMealImage, analyzeMeal, getMealHistory, getMealAnalysis } from '../controllers/mealController.js';
 
 const router = express.Router();
 

@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import multer from 'multer';
 import sharp from 'sharp';
-import { AuthRequest } from '../middleware/auth';
-import MealAnalysis from '../models/MealAnalysis';
-import User from '../models/User';
+import { AuthRequest } from '../middleware/auth.js';
+import MealAnalysis from '../models/MealAnalysis.js';
+import User from '../models/User.js';
 
 // Multer setup for image upload
 const storage = multer.memoryStorage();

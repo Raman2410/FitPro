@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import mongoose from 'mongoose';
-import User from '../models/User';
-import { generateToken } from '../middleware/auth';
+import User from '../models/User.js';
+import { generateToken } from '../middleware/auth.js';
 
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {

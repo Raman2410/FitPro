@@ -10,7 +10,7 @@ interface DetectedFood {
  * Requires: GOOGLE_APPLICATION_CREDENTIALS environment variable
  */
 export class VisionFoodDetector {
-    private client: vision.ImageAnnotatorClient | null = null;
+    private client: any = null;
     private isEnabled: boolean = false;
 
     constructor() {
@@ -56,13 +56,13 @@ export class VisionFoodDetector {
             ];
 
             const detectedFoods: DetectedFood[] = labels
-                .filter(label => {
+                .filter((label: any) => {
                     const description = label.description?.toLowerCase() || '';
                     return foodKeywords.some(keyword =>
                         description.includes(keyword) || keyword.includes(description)
                     );
                 })
-                .map(label => ({
+                .map((label: any) => ({
                     name: label.description || 'unknown',
                     confidence: label.score || 0
                 }))
@@ -92,8 +92,8 @@ export class VisionFoodDetector {
             const objects = result.localizedObjectAnnotations || [];
 
             const detectedFoods: DetectedFood[] = objects
-                .filter(obj => obj.name?.toLowerCase().includes('food'))
-                .map(obj => ({
+                .filter((obj: any) => obj.name?.toLowerCase().includes('food'))
+                .map((obj: any) => ({
                     name: obj.name || 'unknown',
                     confidence: obj.score || 0
                 }))

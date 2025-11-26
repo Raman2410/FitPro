@@ -37,7 +37,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     await user.save();
 
-    const token = generateToken(user._id.toString());
+    const token = generateToken((user._id as any).toString());
 
     res.status(201).json({
       success: true,
@@ -90,7 +90,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const token = generateToken(user._id.toString());
+    const token = generateToken((user._id as any).toString());
 
     res.json({
       success: true,
@@ -115,9 +115,9 @@ export const getProfile = async (req: Request, res: Response): Promise<void> => 
   try {
     const currentUser = (req as any).user;
     console.log('Get profile - Current user:', currentUser);
-    
+
     const user = await User.findById(currentUser._id).select('-password');
-    
+
     if (!user) {
       console.log('Update profile - User not found for ID:', currentUser._id);
       res.status(404).json({
@@ -144,7 +144,7 @@ export const getProfile = async (req: Request, res: Response): Promise<void> => 
 export const updateProfile = async (req: Request, res: Response): Promise<void> => {
   try {
     console.log('Update profile - Full req.user:', (req as any).user);
-    
+
     // The auth middleware already sets req.user to the full user object
     const currentUser = (req as any).user;
     const updates = req.body;

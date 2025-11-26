@@ -659,24 +659,24 @@ const SettingsPage: React.FC = () => {
 
   const renderPrivacySection = () => (
     <div className="space-y-6">
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Management</h3>
+      <div className={getCardClasses()}>
+        <h3 className={getHeadingClasses()}>Account Management</h3>
         <div className="space-y-3">
-          <button className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
+          <button className={`w-full flex items-center justify-between p-4 border rounded-lg transition-all ${isDarkMode ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-200 hover:bg-gray-50'}`}>
             <div className="flex items-center space-x-3">
               <Star className="w-5 h-5 text-yellow-500" />
-              <span className="font-medium">Manage Subscription</span>
+              <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Manage Subscription</span>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-400" />
           </button>
-          <button className="w-full flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-all">
+          <button className={`w-full flex items-center justify-between p-4 border rounded-lg transition-all ${isDarkMode ? 'border-gray-600 hover:bg-gray-700' : 'border-gray-200 hover:bg-gray-50'}`}>
             <div className="flex items-center space-x-3">
               <Download className="w-5 h-5 text-blue-500" />
-              <span className="font-medium">Download My Data</span>
+              <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Download My Data</span>
             </div>
             <ChevronRight className="w-5 h-5 text-gray-400" />
           </button>
-          <button className="w-full flex items-center justify-between p-4 border border-red-200 rounded-lg hover:bg-red-50 transition-all text-red-600">
+          <button className={`w-full flex items-center justify-between p-4 border rounded-lg transition-all text-red-600 ${isDarkMode ? 'border-red-900 hover:bg-red-950' : 'border-red-200 hover:bg-red-50'}`}>
             <div className="flex items-center space-x-3">
               <Trash2 className="w-5 h-5" />
               <span className="font-medium">Delete My Account</span>
@@ -686,13 +686,13 @@ const SettingsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Connected Devices</h3>
+      <div className={getCardClasses()}>
+        <h3 className={getHeadingClasses()}>Connected Devices</h3>
         <div className="space-y-3">
           {['Smartwatch', 'Fitness Band', 'Google Fit', 'Apple Health'].map((device) => (
-            <div key={device} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
-              <span className="font-medium">{device}</span>
-              <button className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-all">
+            <div key={device} className={`flex items-center justify-between p-3 border rounded-lg ${isDarkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+              <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{device}</span>
+              <button className={`px-3 py-1 text-sm border rounded-lg transition-all ${isDarkMode ? 'border-gray-600 hover:bg-gray-700 text-gray-300' : 'border-gray-300 hover:bg-gray-50 text-gray-900'}`}>
                 Connect
               </button>
             </div>
@@ -704,13 +704,13 @@ const SettingsPage: React.FC = () => {
 
   const renderAppSection = () => (
     <div className="space-y-6">
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Appearance</h3>
+      <div className={getCardClasses()}>
+        <h3 className={getHeadingClasses()}>Appearance</h3>
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              {isDarkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-              <span className="font-medium">Dark Mode</span>
+              {isDarkMode ? <Moon className={`w-5 h-5 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} /> : <Sun className={`w-5 h-5 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`} />}
+              <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Dark Mode</span>
             </div>
             <button
               onClick={toggleDarkMode}
@@ -724,8 +724,8 @@ const SettingsPage: React.FC = () => {
             </button>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
-            <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            <label className={getLabelClasses()}>Language</label>
+            <select className={getSelectClasses()}>
               <option>English</option>
               <option>Spanish</option>
               <option>French</option>
@@ -735,26 +735,26 @@ const SettingsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Units & Measurements</h3>
+      <div className={getCardClasses()}>
+        <h3 className={getHeadingClasses()}>Units & Measurements</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Weight Units</label>
+            <label className={getLabelClasses()}>Weight Units</label>
             <select
               value={units.weight}
               onChange={(e) => setUnits({...units, weight: e.target.value as 'kg' | 'lbs'})}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className={getSelectClasses()}
             >
               <option value="kg">Kilograms (kg)</option>
               <option value="lbs">Pounds (lbs)</option>
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Height Units</label>
+            <label className={getLabelClasses()}>Height Units</label>
             <select
               value={units.height}
               onChange={(e) => setUnits({...units, height: e.target.value as 'cm' | 'ft'})}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className={getSelectClasses()}
             >
               <option value="cm">Centimeters (cm)</option>
               <option value="ft">Feet & Inches</option>
@@ -763,12 +763,12 @@ const SettingsPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Advanced Settings</h3>
+      <div className={getCardClasses()}>
+        <h3 className={getHeadingClasses()}>Advanced Settings</h3>
         <div className="flex items-center justify-between">
           <div>
-            <h4 className="font-medium text-gray-900">Offline Mode</h4>
-            <p className="text-sm text-gray-500">Use app without internet connection</p>
+            <h4 className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Offline Mode</h4>
+            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>Use app without internet connection</p>
           </div>
           <button className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition-colors">
             <span className="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-1" />

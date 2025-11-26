@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthStore } from '../stores/authStore';
+import { useThemeStore } from '../stores/themeStore';
 import { LogOut, User, Settings, TrendingUp, Dumbbell, Camera, Mic, Apple, Edit2, Save, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Dashboard: React.FC = () => {
+  const { isDarkMode } = useThemeStore();
   const { user, logout, updateProfile, isLoading } = useAuthStore();
   const [isEditingProfile, setIsEditingProfile] = useState(false);
   const [editedUser, setEditedUser] = useState({
@@ -78,34 +80,34 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-sm border-b">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+      <nav className={`shadow-sm border-b ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
               <img src="/logo.png" alt="FitPro Logo" className="h-10 w-10 object-contain" />
-              <h1 className="text-2xl font-bold text-gray-900">FitPro</h1>
+              <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>FitPro</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-sm text-gray-600">
+              <span className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                 Welcome, {user?.name}
               </span>
               <span className={`px-2 py-1 text-xs rounded-full ${
                 user?.subscriptionType === 'premium' 
                   ? 'bg-yellow-100 text-yellow-800' 
-                  : 'bg-gray-100 text-gray-800'
+                  : (isDarkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-800')
               }`}>
                 {user?.subscriptionType?.toUpperCase()}
               </span>
               <Link
                 to="/settings"
-                className="p-2 text-gray-400 hover:text-gray-600"
+                className={`p-2 ${isDarkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'}`}
               >
                 <Settings className="h-5 w-5" />
               </Link>
               <button
                 onClick={logout}
-                className="p-2 text-gray-400 hover:text-gray-600"
+                className={`p-2 ${isDarkMode ? 'text-gray-400 hover:text-gray-200' : 'text-gray-400 hover:text-gray-600'}`}
               >
                 <LogOut className="h-5 w-5" />
               </button>
@@ -117,10 +119,10 @@ const Dashboard: React.FC = () => {
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className={`text-3xl font-bold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
               Welcome back, {user?.name}!
             </h2>
-            <p className="text-gray-600">
+            <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>
               Ready to achieve your fitness goals with AI-powered guidance?
             </p>
           </div>
@@ -130,15 +132,15 @@ const Dashboard: React.FC = () => {
               <Link
                 key={action.name}
                 to={action.href}
-                className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border"
+                className={`p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}
               >
                 <div className={`${action.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}>
                   <action.icon className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className={`text-lg font-semibold mb-2 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
                   {action.name}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
                   Get personalized {action.name.toLowerCase()} recommendations
                 </p>
               </Link>
@@ -146,32 +148,32 @@ const Dashboard: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm border">
+            <div className={`p-6 rounded-lg shadow-sm border ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
               <div className="flex items-center mb-4">
                 <TrendingUp className="h-6 w-6 text-green-500 mr-2" />
-                <h3 className="text-lg font-semibold text-gray-900">Your Progress</h3>
+                <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Your Progress</h3>
               </div>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Weekly Goal Progress</span>
-                  <span className="font-semibold">75%</span>
+                  <span className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>Weekly Goal Progress</span>
+                  <span className={`font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>75%</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className={`w-full rounded-full h-2 ${isDarkMode ? 'bg-gray-700' : 'bg-gray-200'}`}>
                   <div className="bg-green-500 h-2 rounded-full" style={{ width: '75%' }}></div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-sm border">
+            <div className={`p-6 rounded-lg shadow-sm border ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'}`}>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                   <User className="h-6 w-6 text-blue-500 mr-2" />
-                  <h3 className="text-lg font-semibold text-gray-900">Profile Summary</h3>
+                  <h3 className={`text-lg font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Profile Summary</h3>
                 </div>
                 {!isEditingProfile && (
                   <button
                     onClick={handleEditProfile}
-                    className="p-1 text-gray-400 hover:text-blue-500 transition-colors"
+                    className={`p-1 transition-colors ${isDarkMode ? 'text-gray-400 hover:text-blue-400' : 'text-gray-400 hover:text-blue-500'}`}
                     title="Edit Profile"
                   >
                     <Edit2 className="h-4 w-4" />
@@ -182,22 +184,22 @@ const Dashboard: React.FC = () => {
               {isEditingProfile ? (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Age:</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Age:</label>
                     <input
                       type="number"
                       min="13"
                       max="120"
                       value={editedUser.age}
                       onChange={(e) => handleInputChange('age', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Gender:</label>
+                    <label className={`block text-sm font-medium mb-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-700'}`}>Gender:</label>
                     <select
                       value={editedUser.gender}
                       onChange={(e) => handleInputChange('gender', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${isDarkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
                     >
                       <option value="male">Male</option>
                       <option value="female">Female</option>
@@ -235,16 +237,16 @@ const Dashboard: React.FC = () => {
               ) : (
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Age:</span>
-                    <span className="font-medium">{user?.age || 'Not set'}</span>
+                    <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Age:</span>
+                    <span className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{user?.age || 'Not set'}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Gender:</span>
-                    <span className="font-medium capitalize">{user?.gender || 'Not set'}</span>
+                    <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Gender:</span>
+                    <span className={`font-medium capitalize ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{user?.gender || 'Not set'}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Plan:</span>
-                    <span className="font-medium capitalize">{user?.subscriptionType}</span>
+                    <span className={isDarkMode ? 'text-gray-400' : 'text-gray-600'}>Plan:</span>
+                    <span className={`font-medium capitalize ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>{user?.subscriptionType}</span>
                   </div>
                 </div>
               )}

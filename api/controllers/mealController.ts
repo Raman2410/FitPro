@@ -139,7 +139,7 @@ export const analyzeMeal = async (req: AuthRequest, res: Response): Promise<void
       recommendations
     });
     await analysis.save();
-    res.json({ success: true, analysis: { id: analysis._id, foodItems, totalNutrition, dietaryScore, aiConfidenceScore, recommendations, mealType } });
+    res.json({ success: true, analysis: { id: analysis._id, foodItems, totalNutrition, dietaryScore, aiConfidenceScore, recommendations, mealType, analysisDate: analysis.analysisDate } });
   } catch (err) {
     console.error('Meal analysis error:', err);
     res.status(500).json({ success: false, message: 'Error analyzing meal' });
